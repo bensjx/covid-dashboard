@@ -27,3 +27,5 @@ app.title = "Multilingual Covid-19 Dashboard"
 app_name = "Multilingual Covid-19 Dashboard" 
 
 server = app.server
+
+app.layout = html.Div("Testing")

@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import pprint
+import os
 
 # Import dash
 import dash
@@ -13,9 +14,15 @@ from dash.dependencies import Input, Output, State
 
 # Import newsapi
 from newsapi import NewsApiClient
-from keys import newsapikey
 
-newsapi = NewsApiClient(api_key=newsapikey)
+try:
+    from keys import newsapikey  # retrieve for local system
+
+    newsapi = NewsApiClient(api_key=newsapikey)
+except:
+    newsapikey = os.environ["newapi_key"]  # retrieve from Heroku
+    newsapi = NewsApiClient(api_key=newsapikey)
+
 n_days_ago = 30
 date_n_days_ago = datetime.now() - timedelta(days=n_days_ago)
 date_now = datetime.now()

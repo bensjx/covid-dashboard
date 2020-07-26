@@ -1,4 +1,4 @@
-# covid-dashboard
+# Dengue-dashboard
 
 Deployed app here: https://dengue-db-ben.herokuapp.com/
 

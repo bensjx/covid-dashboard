@@ -29,3 +29,6 @@ app_name = "Multilingual Covid-19 Dashboard"
 server = app.server
 
 app.layout = html.Div("Testing")
+
+if __name__ == "__main__":
+    app.run_server()

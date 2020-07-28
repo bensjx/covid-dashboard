@@ -1,5 +1,8 @@
+# General libraries
 import pandas as pd
 import numpy as np
+import json
+import pprint
 
 # Import dash
 import dash
@@ -8,11 +11,28 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
 
+# Plotting libraries
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import folium
+
+
+def map_graph():
+    data = gpd.read_file("data/dengue-clusters-geojson.geojson")
+    kw = {"location": [1.3521, 103.8198], "zoom_start": 12}
+    m = folium.Map(**kw)
+    folium.GeoJson(data).add_to(m)
+    m.save("dengue-cluster.html")
+    return m
+
+
+map_graph()
+
 analysistab = dbc.Card(
     [
         dbc.CardBody(
             [
-                # info cards
+                # Overview
                 dbc.Row(
                     [
                         dbc.Col(
@@ -121,54 +141,62 @@ analysistab = dbc.Card(
                     ]
                 ),
                 html.Br(),
-                # graphs
-                dbc.Spinner(
-                    color="primary",
-                    type="grow",
-                    children=[dcc.Graph(id="graph_map_continent")],
+                ## Graphs
+                # Dengue cluster
+                html.Iframe(
+                    id="dengue-map",
+                    srcDoc=open("dengue-cluster.html", "r").read(),
+                    width="100%",
+                    height="500",
                 ),
                 html.Br(),
+                #
                 dbc.Spinner(
                     color="primary",
                     type="grow",
                     children=[dcc.Graph(id="graph_treemap_continent")],
                 ),
                 html.Br(),
+                #
                 dbc.Spinner(
                     color="primary",
                     type="grow",
                     children=[dcc.Graph(id="graph_bar_continent")],
                 ),
                 html.Br(),
+                #
                 dbc.Spinner(
                     color="primary",
                     type="grow",
                     children=[dcc.Graph(id="graph_line_continent")],
                 ),
                 html.Br(),
+                #
                 dbc.Spinner(
                     color="primary",
                     type="grow",
                     children=[dcc.Graph(id="graph_area_continent")],
                 ),
                 html.Br(),
+                #
                 dbc.Spinner(
                     color="primary",
                     type="grow",
                     children=[dcc.Graph(id="graph_compare_country")],
                 ),
                 html.Br(),
-                html.H6(
-                    id="label_not_translated",
-                    children=[
-                        "If any text in this dashboard is untranslated, type or copy paste it here this to translate!"
-                    ],
-                ),
-                dcc.Input(id="input_text", type="text", placeholder=""),
-                html.Button("Translate", id="submit-val"),
-                dbc.Spinner(
-                    color="primary", type="grow", children=[html.Div(id="output_text")]
-                ),
+                # #
+                # html.H6(
+                #     id="label_not_translated",
+                #     children=[
+                #         "If any text in this dashboard is untranslated, type or copy paste it here this to translate!"
+                #     ],
+                # ),
+                # dcc.Input(id="input_text", type="text", placeholder=""),
+                # html.Button("Translate", id="submit-val"),
+                # dbc.Spinner(
+                #     color="primary", type="grow", children=[html.Div(id="output_text")]
+                # ),
             ]
         )
     ]

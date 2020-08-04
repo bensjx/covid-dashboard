@@ -12,3 +12,10 @@ Deployed app here: https://dengue-db-ben.herokuapp.com/
 1. Folium: https://blog.algorexhealth.com/2018/04/everything-you-never-wanted-to-know-about-geographic-charting/
 1. Folium integration: https://medium.com/@shachiakyaagba_41915/integrating-folium-with-dash-5338604e7c56
 1. Inspiration: https://github.com/nagarajbhat/dash-covid19-multilingual
+
+# Concepts:
+1. Dash by Plotly - Web framework in Python
+1. Heroku - Deployment of web application
+1. Newsapi - Fetch news from a variety of sources
+1. Folium - Geospatial analytics
+1. 

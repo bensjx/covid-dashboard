@@ -138,4 +138,4 @@ venv
 keys.py
 
 # vscode
-.vscode/
+.vscode/settings.json

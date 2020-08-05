@@ -23,3 +23,7 @@ Deployed app here: https://dengue-db-ben.herokuapp.com/
 # Usage:
 1. Create an anaconda enviornment with python=3.6
 1. Update your environment with `conda env update -n <environment name> -f environment.yml`
+1. If `fiona` package has an error, follow:
+   * `pip install pipwin`
+   * `pipwin install fiona`
+ 

@@ -19,3 +19,7 @@ Deployed app here: https://dengue-db-ben.herokuapp.com/
 1. Newsapi - Fetch news from a variety of sources
 1. Folium - Geospatial analytics
 1. 
+
+# Usage:
+1. Create an anaconda enviornment with python=3.6
+1. Update your environment with `conda env update -n <environment name> -f environment.yml`

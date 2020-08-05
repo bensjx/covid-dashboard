@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import json
 import pprint
+import regex as re
 
 # Import dash
 import dash
@@ -15,20 +16,55 @@ from dash.dependencies import Input, Output, State
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import folium
+from shapely.geometry import Polygon
 
 
 def map_graph():
-    data = gpd.read_file("data/dengue-clusters-geojson.geojson")
+    # GeoJson Data
+    cluster_gj = gpd.read_file("data/dengue-clusters-geojson.geojson")
+    area_high_ades_gj = gpd.read_file(
+        "data/areas-with-high-aedes-population-geojson.geojson"
+    )
+
+    # Creation of map
     kw = {"location": [1.3521, 103.8198], "zoom_start": 12}
     m = folium.Map(**kw)
-    folium.GeoJson(data).add_to(m)
+
+    # Styles
+    area_high_ades_style = {"fillColor": "#228B22", "color": "#FF0000"}
+
+    # Modifying tooltip
+    cluster_gj.Description = cluster_gj.Description.map(
+        lambda x: re.search(r"(<td>.*?</td>)", x).group(0)[4:-5]
+    )
+
+    area_high_ades_gj.Description = area_high_ades_gj.Description.map(
+        lambda x: re.search(r"(<td>.*?</td>)", x).group(0)[4:-5]
+    )
+
+    # Addition of layers to map
+    folium.GeoJson(
+        cluster_gj,
+        tooltip=folium.GeoJsonTooltip(
+            fields=["Description"], aliases=["Location"], localize=True
+        ),
+    ).add_to(m)
+
+    folium.GeoJson(
+        area_high_ades_gj,
+        style_function=lambda x: area_high_ades_style,
+        tooltip=folium.GeoJsonTooltip(
+            fields=["Description"], aliases=["Location"], localize=True
+        ),
+    ).add_to(m)
+
     m.save("dengue-cluster.html")
     return m
 
 
 map_graph()
 
-analysistab = dbc.Card(
+analysisTab = dbc.Card(
     [
         dbc.CardBody(
             [
@@ -143,6 +179,7 @@ analysistab = dbc.Card(
                 html.Br(),
                 ## Graphs
                 # Dengue cluster
+                html.P("Accurate as of: 02 Aug 2020"),
                 html.Iframe(
                     id="dengue-map",
                     srcDoc=open("dengue-cluster.html", "r").read(),

@@ -9,10 +9,10 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
 
-from analysis import *
-from news import *
-from socialMedia import *
-from controls import *
+from analysis import analysisTab
+from news import newsTab
+from socialMedia import socialMediaTab
+from info import infoTab
 
 # import plotly.express as px
 # import plotly.graph_objects as go
@@ -70,8 +70,9 @@ app.layout = html.Div(
         navbar,
         dbc.Tabs(
             [
-                dbc.Tab(analysistab, id="label_tab1", label="Analysis",),
-                dbc.Tab(newstab, id="label_tab2", label="News",),
+                dbc.Tab(analysisTab, id="label_tab1", label="Analysis"),
+                dbc.Tab(newsTab, id="label_tab2", label="News"),
+                dbc.Tab(infoTab, id="label_tab3", label="More Information"),
             ],
             style={"font-size": 25, "background-color": "#b9d9eb"},
         ),

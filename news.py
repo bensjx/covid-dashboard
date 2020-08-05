@@ -123,4 +123,4 @@ def news_update():
     return news_all
 
 
-newstab = html.Div(news_update())
+newsTab = html.Div(news_update())

@@ -16,7 +16,7 @@ from dash.dependencies import Input, Output, State
 from newsapi import NewsApiClient
 
 try:
-    from keys import newsapikey  # retrieve for local system
+    from keys import newsapikey  # retrieve from local system
 
     newsapi = NewsApiClient(api_key=newsapikey)
 except:

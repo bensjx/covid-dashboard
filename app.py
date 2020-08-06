@@ -55,7 +55,7 @@ navbar = dbc.Navbar(
                 align="left",
                 no_gutters=True,
             ),
-            href="https://dengue-db-ben.herokuapp.com/",
+            href="https://dengue-db.herokuapp.com/",
         ),
         dbc.NavbarToggler(id="navbar-toggler"),
     ],

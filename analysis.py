@@ -16,7 +16,38 @@ from dash.dependencies import Input, Output, State
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import folium
-from shapely.geometry import Polygon
+from branca.element import Template, MacroElement
+
+
+def calc_cases():
+    central_data = gpd.read_file("data/dengue-cases-central-geojson.geojson")
+    ne_data = gpd.read_file("data/dengue-cases-north-east-geojson.geojson")
+    se_data = gpd.read_file("data/dengue-cases-south-east-geojson.geojson")
+    sw_data = gpd.read_file("data/dengue-cases-south-west-geojson.geojson")
+
+    central_cases = sum(
+        central_data.Description.map(
+            lambda x: int(re.search(r"(<td>.*?</td>)", x).group(0)[4:-5])
+        )
+    )
+    ne_cases = sum(
+        ne_data.Description.map(
+            lambda x: int(re.search(r"(<td>.*?</td>)", x).group(0)[4:-5])
+        )
+    )
+    se_cases = sum(
+        se_data.Description.map(
+            lambda x: int(re.search(r"(<td>.*?</td>)", x).group(0)[4:-5])
+        )
+    )
+    sw_cases = sum(
+        sw_data.Description.map(
+            lambda x: int(re.search(r"(<td>.*?</td>)", x).group(0)[4:-5])
+        )
+    )
+    total_cases = sum([central_cases, ne_cases, se_cases, sw_cases])
+
+    return [total_cases, central_cases, ne_cases, se_cases, sw_cases]
 
 
 def map_graph():
@@ -58,79 +89,123 @@ def map_graph():
         ),
     ).add_to(m)
 
+    # Legend
+    # Template from: https://nbviewer.jupyter.org/gist/talbertc-usgs/18f8901fc98f109f2b71156cf3ac81cd
+    template = """
+    {% macro html(this, kwargs) %}
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Draggable - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script>
+    $( function() {
+        $( "#maplegend" ).draggable({
+                        start: function (event, ui) {
+                            $(this).css({
+                                right: "auto",
+                                top: "auto",
+                                bottom: "auto"
+                            });
+                        }
+                    });
+    });
+
+    </script>
+    </head>
+    <body>
+
+    
+    <div id='maplegend' class='maplegend' 
+        style='position: absolute; z-index:9999; border:2px solid grey; background-color:rgba(255, 255, 255, 0.8);
+        border-radius:6px; padding: 10px; font-size:14px; right: 20px; bottom: 20px;'>
+        
+    <div class='legend-title'>Legend</div>
+    <div class='legend-scale'>
+    <ul class='legend-labels'>
+        <li><span style='background:#73adff;opacity:0.9;'></span>Dengue clusters</li>
+        <li><span style='background:#FF0000;opacity:0.7;'></span>Areas with high ades population</li>
+
+    </ul>
+    </div>
+    </div>
+    
+    </body>
+    </html>
+
+    <style type='text/css'>
+    .maplegend .legend-title {
+        text-align: left;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 90%;
+        }
+    .maplegend .legend-scale ul {
+        margin: 0;
+        margin-bottom: 5px;
+        padding: 0;
+        float: left;
+        list-style: none;
+        }
+    .maplegend .legend-scale ul li {
+        font-size: 80%;
+        list-style: none;
+        margin-left: 0;
+        line-height: 18px;
+        margin-bottom: 2px;
+        }
+    .maplegend ul.legend-labels li span {
+        display: block;
+        float: left;
+        height: 16px;
+        width: 30px;
+        margin-right: 5px;
+        margin-left: 0;
+        border: 1px solid #999;
+        }
+    .maplegend .legend-source {
+        font-size: 80%;
+        color: #777;
+        clear: both;
+        }
+    .maplegend a {
+        color: #777;
+        }
+    </style>
+    {% endmacro %}"""
+
+    macro = MacroElement()
+    macro._template = Template(template)
+    m.get_root().add_child(macro)
+
     m.save("dengue-cluster.html")
     return m
 
 
-map_graph()
+# map_graph()
 
 analysisTab = dbc.Card(
     [
         dbc.CardBody(
             [
                 # Overview
+                html.P("Accurate as of: 02 Aug 2020"),
                 dbc.Row(
                     [
                         dbc.Col(
                             dbc.Card(
                                 [
                                     dbc.CardHeader(
-                                        html.H6(
-                                            id="label_info1",
-                                            children=["location country"],
-                                        )
+                                        html.H6(id="case_1", children=["Total Cases"],)
                                     ),
-                                    dbc.CardBody(html.H4(id="location_country")),
-                                ],
-                                color="info",
-                            )
-                        ),
-                        dbc.Col(
-                            dbc.Card(
-                                [
-                                    dbc.CardHeader(
-                                        html.H6(id="label_info2", children=["date"])
-                                    ),
-                                    dbc.CardBody(html.H4(id="date")),
-                                ],
-                                color="info",
-                            )
-                        ),
-                        dbc.Col(
-                            dbc.Card(
-                                [
-                                    dbc.CardHeader(
-                                        html.H6(
-                                            id="label_info3", children=["Total cases"]
-                                        )
-                                    ),
-                                    dbc.CardBody(html.H4(id="total_cases")),
-                                ],
-                                color="warning",
-                            )
-                        ),
-                        dbc.Col(
-                            dbc.Card(
-                                [
-                                    dbc.CardHeader(
-                                        html.H6(
-                                            id="label_info4", children=["New cases"]
-                                        )
-                                    ),
-                                    dbc.CardBody(html.H4(id="new_cases")),
-                                ],
-                                color="warning",
-                            )
-                        ),
-                        dbc.Col(
-                            dbc.Card(
-                                [
-                                    dbc.CardHeader(
-                                        html.H6(
-                                            id="label_info5", children=["total deaths"]
-                                        )
-                                    ),
-                                    dbc.CardBody(html.H4(id="total_deaths")),
+                                    dbc.CardBody(html.H4(calc_cases()[0])),
                                 ],
                                 color="danger",
                             )
@@ -140,12 +215,12 @@ analysisTab = dbc.Card(
                                 [
                                     dbc.CardHeader(
                                         html.H6(
-                                            id="label_info6", children=["New deaths"]
+                                            id="case_2", children=["Central Cases"],
                                         )
                                     ),
-                                    dbc.CardBody(html.H4(id="new_deaths")),
+                                    dbc.CardBody(html.H4(calc_cases()[1])),
                                 ],
-                                color="danger",
+                                color="secondary",
                             )
                         ),
                         dbc.Col(
@@ -153,10 +228,10 @@ analysisTab = dbc.Card(
                                 [
                                     dbc.CardHeader(
                                         html.H6(
-                                            id="label_info7", children=["total tests"]
+                                            id="case_3", children=["North-East Cases"],
                                         )
                                     ),
-                                    dbc.CardBody(html.H4(id="total_tests")),
+                                    dbc.CardBody(html.H4(calc_cases()[2])),
                                 ],
                                 color="success",
                             )
@@ -166,12 +241,25 @@ analysisTab = dbc.Card(
                                 [
                                     dbc.CardHeader(
                                         html.H6(
-                                            id="label_info8", children=["New tests"]
+                                            id="case_4", children=["South-East Cases"],
                                         )
                                     ),
-                                    dbc.CardBody(html.H4(id="new_tests")),
+                                    dbc.CardBody(html.H4(calc_cases()[3])),
                                 ],
-                                color="success",
+                                color="warning",
+                            )
+                        ),
+                        dbc.Col(
+                            dbc.Card(
+                                [
+                                    dbc.CardHeader(
+                                        html.H6(
+                                            id="case_5", children=["South-West Cases"],
+                                        )
+                                    ),
+                                    dbc.CardBody(html.H4(calc_cases()[4])),
+                                ],
+                                color="info",
                             )
                         ),
                     ]
@@ -187,53 +275,13 @@ analysisTab = dbc.Card(
                     height="500",
                 ),
                 html.Br(),
-                #
-                dbc.Spinner(
-                    color="primary",
-                    type="grow",
-                    children=[dcc.Graph(id="graph_treemap_continent")],
-                ),
-                html.Br(),
-                #
-                dbc.Spinner(
-                    color="primary",
-                    type="grow",
-                    children=[dcc.Graph(id="graph_bar_continent")],
-                ),
-                html.Br(),
-                #
-                dbc.Spinner(
-                    color="primary",
-                    type="grow",
-                    children=[dcc.Graph(id="graph_line_continent")],
-                ),
-                html.Br(),
-                #
-                dbc.Spinner(
-                    color="primary",
-                    type="grow",
-                    children=[dcc.Graph(id="graph_area_continent")],
-                ),
-                html.Br(),
-                #
-                dbc.Spinner(
-                    color="primary",
-                    type="grow",
-                    children=[dcc.Graph(id="graph_compare_country")],
-                ),
-                html.Br(),
                 # #
-                # html.H6(
-                #     id="label_not_translated",
-                #     children=[
-                #         "If any text in this dashboard is untranslated, type or copy paste it here this to translate!"
-                #     ],
-                # ),
-                # dcc.Input(id="input_text", type="text", placeholder=""),
-                # html.Button("Translate", id="submit-val"),
                 # dbc.Spinner(
-                #     color="primary", type="grow", children=[html.Div(id="output_text")]
+                #     color="primary",
+                #     type="grow",
+                #     children=[dcc.Graph(id="graph_compare_country")],
                 # ),
+                # html.Br(),
             ]
         )
     ]

@@ -70,11 +70,12 @@ app.layout = html.Div(
         navbar,
         dbc.Tabs(
             [
-                dbc.Tab(analysisTab, id="label_tab1", label="Analysis"),
-                dbc.Tab(newsTab, id="label_tab2", label="News"),
-                dbc.Tab(infoTab, id="label_tab3", label="More Information"),
+                dbc.Tab(analysisTab, id="label_tab1", label="Visuals"),
+                dbc.Tab(newsTab, id="label_tab2", label="Related News"),
+                dbc.Tab(socialMediaTab, id="label_tab3", label="Twitter Analysis"),
+                dbc.Tab(infoTab, id="label_tab4", label="More Information"),
             ],
-            style={"font-size": 25, "background-color": "#b9d9eb"},
+            style={"font-size": 20, "background-color": "#b9d9eb"},
         ),
     ]
 )

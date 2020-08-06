@@ -28,6 +28,7 @@ dash-table==4.8.1
 decorator==4.4.2
 descartes==1.1.0
 docopt==0.6.2
+fiona
 # Fiona @ file:///C:/Users/bensj/pipwin/Fiona-1.8.13-cp36-cp36m-win_amd64.whl
 Flask==1.1.2
 Flask-Compress==1.5.0
@@ -36,6 +37,7 @@ folium
 # folium @ file:///home/conda/feedstock_root/build_artifacts/folium_1588861378954/work
 future==0.18.2
 # GDAL @ file:///C:/Users/bensj/pipwin/GDAL-3.1.2-cp36-cp36m-win_amd64.whl
+geopandas
 # geopandas @ file:///home/conda/feedstock_root/build_artifacts/geopandas_1594925563431/work
 gunicorn==20.0.4
 # idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1593328102638/work
@@ -55,9 +57,9 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 matplotlib==3.3.0
 mccabe==0.6.1
-mkl-fft==1.1.0
-mkl-random==1.1.1
-mkl-service==2.3.0
+# mkl-fft==1.1.0
+# mkl-random==1.1.1
+# mkl-service==2.3.0
 munch==2.5.0
 murmurhash==1.0.2
 newsapi-python==0.2.6

@@ -34,7 +34,7 @@ Flask-Compress==1.5.0
 Flask-SeaSurf==0.2.2
 folium @ file:///home/conda/feedstock_root/build_artifacts/folium_1588861378954/work
 future==0.18.2
-GDAL @ file:///C:/Users/bensj/pipwin/GDAL-3.1.2-cp36-cp36m-win_amd64.whl
+# GDAL @ file:///C:/Users/bensj/pipwin/GDAL-3.1.2-cp36-cp36m-win_amd64.whl
 # geopandas @ file:///home/conda/feedstock_root/build_artifacts/geopandas_1594925563431/work
 gunicorn==20.0.4
 idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1593328102638/work

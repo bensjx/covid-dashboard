@@ -28,14 +28,14 @@ dash-table==4.8.1
 decorator==4.4.2
 descartes==1.1.0
 docopt==0.6.2
-Fiona @ file:///C:/Users/bensj/pipwin/Fiona-1.8.13-cp36-cp36m-win_amd64.whl
+# Fiona @ file:///C:/Users/bensj/pipwin/Fiona-1.8.13-cp36-cp36m-win_amd64.whl
 Flask==1.1.2
 Flask-Compress==1.5.0
 Flask-SeaSurf==0.2.2
 folium @ file:///home/conda/feedstock_root/build_artifacts/folium_1588861378954/work
 future==0.18.2
 GDAL @ file:///C:/Users/bensj/pipwin/GDAL-3.1.2-cp36-cp36m-win_amd64.whl
-geopandas @ file:///home/conda/feedstock_root/build_artifacts/geopandas_1594925563431/work
+# geopandas @ file:///home/conda/feedstock_root/build_artifacts/geopandas_1594925563431/work
 gunicorn==20.0.4
 idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1593328102638/work
 importlib-metadata==1.7.0
@@ -103,7 +103,7 @@ tornado==6.0.4
 tqdm==4.48.0
 traitlets==4.3.3
 typed-ast==1.4.1
-tzlocal==2.1
+tzlocal==2.1heroku config:set BUILDPACK_URL=https://github.com/thenovices/heroku-buildpack-scipy
 ua-parser==0.10.0
 urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1595434816409/work
 wasabi==0.7.1

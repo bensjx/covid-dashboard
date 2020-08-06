@@ -103,7 +103,7 @@ tornado==6.0.4
 tqdm==4.48.0
 traitlets==4.3.3
 typed-ast==1.4.1
-tzlocal==2.1heroku config:set BUILDPACK_URL=https://github.com/thenovices/heroku-buildpack-scipy
+tzlocal==2.1
 ua-parser==0.10.0
 urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1595434816409/work
 wasabi==0.7.1

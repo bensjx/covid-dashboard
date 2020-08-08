@@ -26,7 +26,10 @@ Deployed app here: https://dengue-db-ben.herokuapp.com/
 # Usage:
 
 1. Create an anaconda enviornment with python=3.6
-1. Update your environment with `conda env update -n <environment name> -f environment.yml`
-1. If `fiona` package has an error, follow:
+1. Update your environment with `conda env update -n <environment name> -f environment.yml --prune`
+   - If update fails follow this script: https://stackoverflow.com/questions/35802939/install-only-available-packages-using-conda-install-yes-file-requirements-t
+1. If `fiona` package has an error, follow (source: https://stackoverflow.com/questions/54734667/error-installing-geopandas-a-gdal-api-version-must-be-specified-in-anaconda
+   ):
+   - `conda remove gdal fiona pyproj six rtree geopandas`
    - `pip install pipwin`
-   - `pipwin install fiona`
+   - `pipwin install gdal fiona pyproj six rtree geopandas`

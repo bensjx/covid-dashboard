@@ -38,7 +38,7 @@ except:  # retrieve from Heroku
 
 search_term = "dengue -filter:retweets"
 
-tweets = tw.Cursor(api.search, q=new_search, lang="en", since="2018-04-23").items(1000)
+tweets = tw.Cursor(api.search, q=search_term, lang="en", since="2018-04-23").items(10)
 
 all_tweets = [tweet.text for tweet in tweets]
 all_tweets[:5]

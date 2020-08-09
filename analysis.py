@@ -275,15 +275,7 @@ analysisTab = dbc.Card(
                     height="500",
                 ),
                 html.Br(),
-                # #
-                # dbc.Spinner(
-                #     color="primary",
-                #     type="grow",
-                #     children=[dcc.Graph(id="graph_compare_country")],
-                # ),
-                # html.Br(),
             ]
         )
     ]
 )
-

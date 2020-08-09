@@ -1,3 +1,6 @@
+"""
+DO NOT USE THIS FILE. REFER TO https://github.com/bensjx/twitter-scrap-dengue/blob/master/mylistener.py
+"""
 import re
 import tweepy
 import mysql.connector

@@ -45,8 +45,6 @@ def news_update():
     all_articles_url = [
         all_articles["articles"][i]["url"] for i in range(len(all_articles["articles"]))
     ]
-    # all_articles_source = [str(all_articles['articles'][i]['source']['name']) for i in range(len(all_articles['articles']))]
-    # all_articles_content = [str(all_articles['articles'][i]['content']).split("[")[0] for i in range(len(all_articles['articles']))]
     all_articles_description = [
         str(all_articles["articles"][i]["description"])
         for i in range(len(all_articles["articles"]))
@@ -89,7 +87,6 @@ def news_update():
                                     className="card-text",
                                     # style={"fontSize": 16}
                                 ),
-                                # dbc.Button("Source", href=all_articles_url[i]),
                             ]
                         ),
                         dbc.CardFooter(

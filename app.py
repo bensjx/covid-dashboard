@@ -4,6 +4,8 @@ import numpy as np
 import pprint
 import datetime
 import random
+import os
+import psycopg2
 
 # Import dash
 import dash
@@ -89,13 +91,17 @@ app.layout = html.Div(
     Output("sa-graph", "children"), [Input("interval-component-slow", "n_intervals")]
 )
 def sa_line(n):
-    db_connection = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd="password",
-        database="TwitterDB",
-        charset="utf8",
-    )
+    # db_connection = mysql.connector.connect(
+    #     host="localhost",
+    #     user="root",
+    #     passwd="password",
+    #     database="TwitterDB",
+    #     charset="utf8",
+    # )
+
+    # Loading data from Heroku PostgreSQL
+    DATABASE_URL = os.environ["DATABASE_URL"]
+    db_connection = psycopg2.connect(DATABASE_URL, sslmode="require")
 
     # Load last 24 hour data from MySQL
     timenow = (
@@ -349,4 +355,4 @@ def sa_line(n):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=False)

@@ -1,6 +1,6 @@
 # Dengue-dashboard
 
-Deployed app here: https://dengue-db-ben.herokuapp.com/
+Deployed app here: https://dengue-db.herokuapp.com/
 
 # Resources:
 
@@ -22,8 +22,9 @@ Deployed app here: https://dengue-db-ben.herokuapp.com/
 1. Heroku - Deployment of web application
 1. Newsapi - Fetch news from a variety of sources
 1. Folium - Geospatial analytics
-1. Tweepy - Twitter Data Stream
+1. Tweepy - Twitter Data Scraping
 1. TextBlob - Sentiment Analysis
+1. PostgreSQL - Database for scraping and retrieval
 
 # Usage:
 

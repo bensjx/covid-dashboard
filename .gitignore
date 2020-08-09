@@ -139,3 +139,6 @@ keys.py
 
 # vscode
 .vscode/settings.json
+
+# Others
+EDA.ipynb

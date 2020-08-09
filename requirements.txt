@@ -69,9 +69,9 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 matplotlib==3.3.0
 mccabe==0.6.1
-mkl-fft==1.1.0
-mkl-random==1.1.1
-mkl-service==2.3.0
+# mkl-fft==1.1.0
+# mkl-random==1.1.1
+# mkl-service==2.3.0
 munch==2.5.0
 murmurhash==1.0.2
 mysql-connector-python==8.0.21

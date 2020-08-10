@@ -9,10 +9,10 @@ This application aims to provide intelligence on a niche topic with the followin
 1. Analysis: Visualise the number of dengue cases, along with an overlayed map of dengue hot zones and breeding spots.
 1. News: This tab is able to retrieve news from multiple sources regarding "Dengue".
 1. Twitter Analysis: There are 4 charts:
-   - A line chart showing how sentiment of tweets related to "dengue" is changing every 5 minutes
-   - A pie chart showing the proportion of sentiments for tweets related to "dengue"
-   - A table to gather live tweets
-   - A word cloud to visualise frequently occuring words
+   - Line chart showing how sentiment of tweets related to "dengue" is changing every 5 minutes
+   - Pie chart showing the proportion of sentiments for tweets related to "dengue"
+   - Data table to gather live tweets
+   - Word cloud to visualise frequently occuring words
 
 # Concepts:
 

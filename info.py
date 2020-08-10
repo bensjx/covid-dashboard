@@ -59,6 +59,11 @@ This application aims to provide intelligence on a niche topic with the followin
    - `pipwin install gdal fiona pyproj six rtree geopandas`
 1. Clone this repo
 
+# Limitations:
+1. This application is not optimised for speed. The twitter analysis tab especially, will take quite some time to load.
+1. This application does not focus on UI/UX. Hence, it is not meant to look nice/pleasing to the eyes.
+1. The budget for this application is $0. As a free-tier member, there is a limited number of news and tweets I can retrieve, limited storage space.
+
                 """
 )
 # # Something else

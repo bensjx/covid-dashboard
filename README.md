@@ -2,7 +2,7 @@
 
 Deployed app here: https://dengue-db.herokuapp.com/
 
-How it's made: https://towardsdatascience.com/@bensjyy
+How it's made: https://towardsdatascience.com/creating-a-web-application-to-analyse-dengue-cases-1be4a708a533
 
 This application aims to provide intelligence on a niche topic with the following 3 features:
 

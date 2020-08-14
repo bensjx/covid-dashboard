@@ -18,10 +18,10 @@ This application aims to provide intelligence on a niche topic with the followin
 1. Analysis: Visualise the number of dengue cases, along with an overlayed map of dengue hot zones and breeding spots.
 1. News: This tab is able to retrieve news from multiple sources regarding "Dengue".
 1. Twitter Analysis: There are 4 charts:
-   - A line chart showing how sentiment of tweets related to "dengue" is changing every 5 minutes
-   - A pie chart showing the proportion of sentiments for tweets related to "dengue"
-   - A table to gather live tweets
-   - A word cloud to visualise frequently occuring words
+   - Line chart showing how sentiment of tweets related to "dengue" is changing every 5 minutes
+   - Pie chart showing the proportion of sentiments for tweets related to "dengue"
+   - Data table to gather live tweets
+   - Word cloud to visualise frequently occuring words
 
 # Concepts:
 
@@ -58,6 +58,11 @@ This application aims to provide intelligence on a niche topic with the followin
    - `pip install pipwin`
    - `pipwin install gdal fiona pyproj six rtree geopandas`
 1. Clone this repo
+
+# Limitations:
+1. This application is not optimised for speed. The twitter analysis tab especially, will take quite some time to load.
+1. This application does not focus on UI/UX. Hence, it is not meant to look nice/pleasing to the eyes.
+1. The budget for this application is $0. As a free-tier member, there is a limited number of news and tweets I can retrieve, limited storage space.
 
                 """
 )

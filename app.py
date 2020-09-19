@@ -103,10 +103,10 @@ def sa_line(n):
     DATABASE_URL = os.environ["DATABASE_URL"]
     db_connection = psycopg2.connect(DATABASE_URL, sslmode="require")
 
-    # Load last 24 hour data from MySQL
+    # Load last 12 hour data from MySQL
     timenow = (
         datetime.datetime.now()
-        - datetime.timedelta(hours=0, minutes=parameters.TIME_PERIOD_MIN)
+        - datetime.timedelta(hours=0, minutes=parameters.TIME_PERIOD_MIN/2)
     ).strftime("%Y-%m-%d %H:%M:%S")
 
     query = "SELECT id_str, clean_text, text, created_at, polarity FROM {} WHERE created_at >= '{}' ".format(

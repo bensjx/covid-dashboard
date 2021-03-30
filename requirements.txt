@@ -96,7 +96,7 @@ preshed==3.0.2
 # protobuf==3.12.2
 psycopg2-binary==2.8.5
 # pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1593275161868/work
-Pygments==2.6.1
+Pygments==2.7.4
 pyjsparser==2.7.1
 PyJWT==1.7.1
 pylint==2.5.3
